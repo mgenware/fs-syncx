@@ -1,0 +1,28 @@
+{
+  "name": "ying",
+  "version": "1.0.0",
+  "description": "Another simple Node.js template engine",
+  "main": "lib/main.js",
+  "author": "Mgen (https://www.mgenware.com)",
+  "homepage": "https://github.com/mgenware/ying",
+  "bugs": "https://github.com/mgenware/ying/issues",
+  "keywords": [
+    "template engine"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mgenware/ying.git"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "escape-html": "^1.0.3",
+    "js-string-escape": "^1.0.0"
+  },
+  "devDependencies": {
+    "mocha": "*"
+  },
+  "scripts": {
+    "test": "mocha --reporter spec"
+  },
+  "engines" : { "node" : ">=4.0.0" }
+}
