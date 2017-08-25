@@ -6,16 +6,15 @@ const PATH_NOT_EXIST = 'PATH_NOT_EXIST.__ABC__';
 const FILE_A_REL = 'test/data/text.txt';
 const FILE_A_ABS = nodepath.join(__dirname, 'data/text.txt');
 const FILE_A_NAME = 'text.txt';
-const FILE_B_REL = 'test/data/json.json';
 const DIR_A_REL = 'test/data/';
 
 describe('fss.pathInfo', () => {
   const t = fss.pathInfo;
 
-  it('Catch exception', () => {
+  it('Catch exceptions', () => {
     assert.throws(() => t(PATH_NOT_EXIST, true));
   });
-  it('No exception', () => {
+  it('Mute exceptions', () => {
     assert.doesNotThrow(() => t(PATH_NOT_EXIST));
   });
 
@@ -42,12 +41,12 @@ describe('fss.pathInfo', () => {
 });
 
 
-describe('fss.isDirectory', () => {
-  const t = fss.isDirectory;
-  it('Catch exception', () => {
+describe('fss.directoryExists', () => {
+  const t = fss.directoryExists;
+  it('Catch exceptions', () => {
     assert.throws(() => t(PATH_NOT_EXIST, true));
   });
-  it('No exception', () => {
+  it('Mute exceptions', () => {
     assert.doesNotThrow(() => t(PATH_NOT_EXIST));
   });
   it('True', () => {
@@ -58,12 +57,12 @@ describe('fss.isDirectory', () => {
   });
 });
 
-describe('fss.isFile', () => {
-  const t = fss.isFile;
-  it('Catch exception', () => {
+describe('fss.fileExists', () => {
+  const t = fss.fileExists;
+  it('Catch exceptions', () => {
     assert.throws(() => t(PATH_NOT_EXIST, true));
   });
-  it('No exception', () => {
+  it('Mute exceptions', () => {
     assert.doesNotThrow(() => t(PATH_NOT_EXIST));
   });
   it('True', () => {
@@ -74,12 +73,31 @@ describe('fss.isFile', () => {
   });
 });
 
-describe('fss.readTextFile', () => {
-  const t = fss.readTextFile;
-  it('Catch exception', () => {
+describe('fss.pathExists', () => {
+  const t = fss.pathExists;
+  it('Catch exceptions', () => {
     assert.throws(() => t(PATH_NOT_EXIST, true));
   });
-  it('No exception', () => {
+  it('Mute exceptions', () => {
+    assert.doesNotThrow(() => t(PATH_NOT_EXIST));
+  });
+  it('True [Directory]', () => {
+    assert.equal(t(DIR_A_REL), true);
+  });
+  it('True [File]', () => {
+    assert.equal(t(FILE_A_ABS), true);
+  });
+  it('False', () => {
+    assert.equal(t(PATH_NOT_EXIST), false);
+  });
+});
+
+describe('fss.readTextFile', () => {
+  const t = fss.readTextFile;
+  it('Catch exceptions', () => {
+    assert.throws(() => t(PATH_NOT_EXIST, true));
+  });
+  it('Mute exceptions', () => {
     assert.doesNotThrow(() => t(PATH_NOT_EXIST));
   });
   it('Read a file', () => {
