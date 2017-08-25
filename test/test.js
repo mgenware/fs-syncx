@@ -12,11 +12,11 @@ const DIR_A_REL = 'test/data/';
 describe('fss.pathInfo', () => {
   const t = fss.pathInfo;
 
-  it('Exception', () => {
-    assert.throws(() => t(PATH_NOT_EXIST, false));
+  it('Catch exception', () => {
+    assert.throws(() => t(PATH_NOT_EXIST, true));
   });
-  it('Exception [Default]', () => {
-    assert.throws(() => t(PATH_NOT_EXIST, false));
+  it('No exception', () => {
+    assert.doesNotThrow(() => t(PATH_NOT_EXIST));
   });
 
   it('name [Relative path]', () => {
@@ -44,8 +44,11 @@ describe('fss.pathInfo', () => {
 
 describe('fss.isDirectory', () => {
   const t = fss.isDirectory;
-  it('Exception', () => {
-    assert.throws(() => t(PATH_NOT_EXIST, false));
+  it('Catch exception', () => {
+    assert.throws(() => t(PATH_NOT_EXIST, true));
+  });
+  it('No exception', () => {
+    assert.doesNotThrow(() => t(PATH_NOT_EXIST));
   });
   it('True', () => {
     assert.equal(t(DIR_A_REL), true);
@@ -57,8 +60,11 @@ describe('fss.isDirectory', () => {
 
 describe('fss.isFile', () => {
   const t = fss.isFile;
-  it('Exception', () => {
-    assert.throws(() => t(PATH_NOT_EXIST, false));
+  it('Catch exception', () => {
+    assert.throws(() => t(PATH_NOT_EXIST, true));
+  });
+  it('No exception', () => {
+    assert.doesNotThrow(() => t(PATH_NOT_EXIST));
   });
   it('True', () => {
     assert.equal(t(FILE_A_REL), true);
@@ -70,15 +76,13 @@ describe('fss.isFile', () => {
 
 describe('fss.readTextFile', () => {
   const t = fss.readTextFile;
-  it('Default', () => {
+  it('Catch exception', () => {
+    assert.throws(() => t(PATH_NOT_EXIST, true));
+  });
+  it('No exception', () => {
+    assert.doesNotThrow(() => t(PATH_NOT_EXIST));
+  });
+  it('Read a file', () => {
     assert.equal(t(FILE_A_REL), 'sample text\n');
   });
 });
-
-describe('fss.readJSONFile', () => {
-  const t = fss.readJSONFile;
-  it('Default', () => {
-    assert.deepEqual(t(FILE_B_REL), { a: 123, b: 'test' });
-  });
-});
-
