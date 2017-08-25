@@ -1,23 +1,19 @@
 {
-  "name": "ying",
-  "version": "1.0.0",
-  "description": "Another simple Node.js template engine",
+  "name": "fs-syncx",
+  "version": "0.0.1",
+  "description": "A wrapper of Node.js fs sync methods",
   "main": "lib/main.js",
   "author": "Mgen (https://www.mgenware.com)",
-  "homepage": "https://github.com/mgenware/ying",
-  "bugs": "https://github.com/mgenware/ying/issues",
+  "homepage": "https://github.com/mgenware/fs-syncx",
+  "bugs": "https://github.com/mgenware/fs-syncx/issues",
   "keywords": [
-    "template engine"
+    "fs", "fs-sync"
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/mgenware/ying.git"
+    "url": "https://github.com/mgenware/fs-syncx.git"
   },
   "license": "MIT",
-  "dependencies": {
-    "escape-html": "^1.0.3",
-    "js-string-escape": "^1.0.0"
-  },
   "devDependencies": {
     "mocha": "*"
   },

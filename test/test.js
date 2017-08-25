@@ -1,3 +1,5 @@
+'use strict';
+
 const assert = require('assert');
 const nodepath = require('path');
 const fss = require('../lib/main');
