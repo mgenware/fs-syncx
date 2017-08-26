@@ -13,7 +13,8 @@ const DIR_A_REL = 'test/data/';
 describe('CallWrapper', () => {
   const t = fss.callWrapper;
   const retExp = 'exception';
-  const funcExp = () => { throw new Error('fake error'); };
+  const errMessage = 'fake error';
+  const funcExp = () => { throw new Error(errMessage); };
   const retNoExp = 'test';
   const funcNoExp = () => retNoExp;
   const state = 'state';
@@ -33,6 +34,12 @@ describe('CallWrapper', () => {
   it('Mute exceptions [Exceptions]', () => {
     assert.doesNotThrow(() => t(false, retExp, funcExp, state));
     assert.equal(t(false, retExp, funcExp, state), retExp);
+  });
+  it('Catch exceptions in callback [Exceptions]', () => {
+    t((st, ex) => {
+      assert.equal(st, state);
+      assert.equal(ex.message, errMessage);
+    }, retExp, funcExp, state);
   });
 });
 
