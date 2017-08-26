@@ -10,6 +10,32 @@ const FILE_A_ABS = nodepath.join(__dirname, 'data/text.txt');
 const FILE_A_NAME = 'text.txt';
 const DIR_A_REL = 'test/data/';
 
+describe('CallWrapper', () => {
+  const t = fss.callWrapper;
+  const retExp = 'exception';
+  const funcExp = () => { throw new Error('fake error'); };
+  const retNoExp = 'test';
+  const funcNoExp = () => retNoExp;
+  const state = 'state';
+
+  it('Catch exceptions [No Exceptions]', () => {
+    assert.doesNotThrow(() => t(true, retExp, funcNoExp, state));
+    assert.equal(t(true, retExp, funcNoExp, state), retNoExp);
+  });
+  it('Mute exceptions [No Exceptions]', () => {
+    assert.doesNotThrow(() => t(false, retExp, funcNoExp, state));
+    assert.equal(t(false, retExp, funcNoExp, state), retNoExp);
+  });
+
+  it('Catch exceptions [Exceptions]', () => {
+    assert.throws(() => t(true, retExp, funcExp, state));
+  });
+  it('Mute exceptions [Exceptions]', () => {
+    assert.doesNotThrow(() => t(false, retExp, funcExp, state));
+    assert.equal(t(false, retExp, funcExp, state), retExp);
+  });
+});
+
 describe('fss.pathInfo', () => {
   const t = fss.pathInfo;
 
