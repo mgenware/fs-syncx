@@ -7,7 +7,8 @@
   "homepage": "https://github.com/mgenware/fs-syncx",
   "bugs": "https://github.com/mgenware/fs-syncx/issues",
   "keywords": [
-    "fs", "fs-sync"
+    "fs",
+    "fs-sync"
   ],
   "repository": {
     "type": "git",
@@ -20,5 +21,7 @@
   "scripts": {
     "test": "mocha --reporter spec"
   },
-  "engines" : { "node" : ">=4.0.0" }
+  "engines": {
+    "node": ">=4.0.0"
+  }
 }

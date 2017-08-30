@@ -12,34 +12,54 @@ const DIR_A_REL = 'test/data/';
 
 describe('CallWrapper', () => {
   const t = fss.callWrapper;
-  const retExp = 'exception';
-  const errMessage = 'fake error';
-  const funcExp = () => { throw new Error(errMessage); };
-  const retNoExp = 'test';
-  const funcNoExp = () => retNoExp;
-  const state = 'state';
+  const RET_EXP = 'exception';
+  const ERR_MSG = 'fake error';
+  const FUNC_EXP = () => { throw new Error(ERR_MSG); };
+  const RET_NOEXP = 'test';
+  const FUN_NOEXP = () => RET_NOEXP;
+  const STATE = 'state';
 
   it('Catch exceptions [No Exceptions]', () => {
-    assert.doesNotThrow(() => t(true, retExp, funcNoExp, state));
-    assert.equal(t(true, retExp, funcNoExp, state), retNoExp);
+    assert.doesNotThrow(() => t(true, RET_EXP, FUN_NOEXP, STATE));
+    assert.equal(t(true, RET_EXP, FUN_NOEXP, STATE), RET_NOEXP);
   });
   it('Mute exceptions [No Exceptions]', () => {
-    assert.doesNotThrow(() => t(false, retExp, funcNoExp, state));
-    assert.equal(t(false, retExp, funcNoExp, state), retNoExp);
+    assert.doesNotThrow(() => t(false, RET_EXP, FUN_NOEXP, STATE));
+    assert.equal(t(false, RET_EXP, FUN_NOEXP, STATE), RET_NOEXP);
   });
 
   it('Catch exceptions [Exceptions]', () => {
-    assert.throws(() => t(true, retExp, funcExp, state));
+    assert.throws(() => t(true, RET_EXP, FUNC_EXP, STATE));
   });
   it('Mute exceptions [Exceptions]', () => {
-    assert.doesNotThrow(() => t(false, retExp, funcExp, state));
-    assert.equal(t(false, retExp, funcExp, state), retExp);
+    assert.doesNotThrow(() => t(false, RET_EXP, FUNC_EXP, STATE));
+    assert.equal(t(false, RET_EXP, FUNC_EXP, STATE), RET_EXP);
   });
   it('Catch exceptions in callback [Exceptions]', () => {
+    const RET = 'testing_t';
+    const STATE_1 = 'state1_t';
+    const MSG_1 = 'msg1_t';
+    const STATE_2 = 'state2_t';
+    const MSG_2 = 'msg2_t';
+    const COUNTER = 2;
+
+    let counter = 0;
     t((st, ex) => {
-      assert.equal(st, state);
-      assert.equal(ex.message, errMessage);
-    }, retExp, funcExp, state);
+      counter += 1;
+      if (counter === 1) {
+        assert.equal(st, STATE_1);
+        assert.equal(ex.message, MSG_1);
+      } else {
+        assert.equal(st, STATE_2);
+        assert.equal(ex.message, MSG_2);
+      }
+    }, RET, (state, exCollector) => {
+      // the state variable points to the root state (STATE_1)
+      exCollector(state, new Error(MSG_1));
+      exCollector(STATE_2, new Error(MSG_2));
+    }, STATE_1);
+
+    assert.equal(counter, COUNTER);
   });
 });
 
