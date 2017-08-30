@@ -35,7 +35,7 @@ describe('CallWrapper', () => {
     assert.doesNotThrow(() => t(false, RET_EXP, FUNC_EXP, STATE));
     assert.equal(t(false, RET_EXP, FUNC_EXP, STATE), RET_EXP);
   });
-  it('Catch exceptions in callback [Exceptions]', () => {
+  it('Catch exceptions in callback', () => {
     const RET = 'testing_t';
     const STATE_1 = 'state1_t';
     const MSG_1 = 'msg1_t';
@@ -57,6 +57,24 @@ describe('CallWrapper', () => {
       // the state variable points to the root state (STATE_1)
       exCollector(state, new Error(MSG_1));
       exCollector(STATE_2, new Error(MSG_2));
+    }, STATE_1);
+
+    assert.equal(counter, COUNTER);
+  });
+
+  it('Catch unexpected exceptions in callback', () => {
+    const RET = 'testing_t';
+    const STATE_1 = 'state1_t';
+    const MSG_1 = 'msg1_t';
+    const COUNTER = 1;
+
+    let counter = 0;
+    t((st, ex) => {
+      counter += 1;
+      assert.equal(st, STATE_1);
+      assert.equal(ex.message, MSG_1);
+    }, RET, () => {
+      throw new Error(MSG_1);
     }, STATE_1);
 
     assert.equal(counter, COUNTER);
