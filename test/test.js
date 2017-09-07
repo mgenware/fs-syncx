@@ -180,7 +180,6 @@ describe('fss.readTextFile', () => {
 
 describe('fss.listPaths', () => {
   const t = fss.listPaths;
-  console.log('--- ', t(DIR_A_REL));
   it('List files', () => {
     assert.deepEqual(t(DIR_A_REL).map(i => i.name).sort(), ['json.json', 'text.txt', 'dir1', 'dir2'].sort());
   });
