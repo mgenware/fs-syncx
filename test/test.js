@@ -9,6 +9,11 @@ const FILE_A_REL = 'test/data/text.txt';
 const FILE_A_ABS = nodepath.join(__dirname, 'data/text.txt');
 const FILE_A_NAME = 'text.txt';
 const DIR_A_REL = 'test/data/';
+const DIR_A_ABS = nodepath.join(__dirname, 'data');
+
+function assertPathsEqual(objs, strs) {
+  assert.deepEqual(objs.map(i => i.name).sort(), strs.sort());
+}
 
 describe('CallWrapper', () => {
   const t = fss.callWrapper;
@@ -180,7 +185,33 @@ describe('fss.readTextFile', () => {
 
 describe('fss.listPaths', () => {
   const t = fss.listPaths;
-  it('List files', () => {
-    assert.deepEqual(t(DIR_A_REL).map(i => i.name).sort(), ['json.json', 'text.txt', 'dir1', 'dir2'].sort());
+  it('List paths [Relative Path]', () => {
+    assertPathsEqual(t(DIR_A_REL), ['json.json', 'text.txt', 'dir1', 'dir2']);
+  });
+  it('List paths [Absolute Path]', () => {
+    assertPathsEqual(t(DIR_A_ABS), ['json.json', 'text.txt', 'dir1', 'dir2']);
+  });
+  it('List paths [Recursive] [Absolute Path]', () => {
+    assertPathsEqual(t({ path: DIR_A_ABS, recursive: true }), ['json.json', 'text.txt', 'dir1', 'dir2', 'dir3', 'test.txt', 'test.txt', 'test.txt']);
+  });
+});
+
+describe('fss.listDirs', () => {
+  const t = fss.listDirs;
+  it('List dirs [Relative Path]', () => {
+    assertPathsEqual(t(DIR_A_REL), ['dir1', 'dir2']);
+  });
+  it('List dirs [Absolute Path]', () => {
+    assertPathsEqual(t(DIR_A_ABS), ['dir1', 'dir2']);
+  });
+});
+
+describe('fss.listFiles', () => {
+  const t = fss.listFiles;
+  it('List files [Relative Path]', () => {
+    assertPathsEqual(t(DIR_A_REL), ['json.json', 'text.txt']);
+  });
+  it('List files [Absolute Path]', () => {
+    assertPathsEqual(t(DIR_A_ABS), ['json.json', 'text.txt']);
   });
 });
