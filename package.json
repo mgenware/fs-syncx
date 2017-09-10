@@ -1,7 +1,7 @@
 {
   "name": "fs-syncx",
-  "version": "0.0.1",
-  "description": "A wrapper of Node.js fs sync methods",
+  "version": "0.0.2",
+  "description": "Useful sync methods for file system",
   "main": "lib/main.js",
   "author": "Mgen (https://www.mgenware.com)",
   "homepage": "https://github.com/mgenware/fs-syncx",
