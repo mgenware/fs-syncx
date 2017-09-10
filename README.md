@@ -5,7 +5,11 @@
 A decent wrapper of Node.js fs sync methods.
 
 # API
-**Not released yet**
+
+## the `catchExp` argument
+
+When working with Node.js fs sync methods, any operation may trigger file system errors, 
+
 
 # License
 MIT
