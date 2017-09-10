@@ -103,10 +103,12 @@ describe('fss.pathInfo', () => {
   });
   it('Catch exceptions in callback', () => {
     let called = false;
-    t(PATH_NOT_EXIST, (state, err) => {
-      called = true;
-      assert.equal(state, PATH_NOT_EXIST);
-      assert(err);
+    assert.doesNotThrow(() => {
+      t(PATH_NOT_EXIST, (state, err) => {
+        called = true;
+        assert.equal(state, PATH_NOT_EXIST);
+        assert(err);
+      });
     });
     assert.equal(called, true);
   });
@@ -128,19 +130,30 @@ describe('fss.pathInfo', () => {
   it('isFile', () => {
     assert.equal(t(FILE_A_REL).isFile, true);
   });
-  it('isDirectory', () => {
-    assert.equal(t(DIR_A_REL).isDirectory, true);
+  it('isDir', () => {
+    assert.equal(t(DIR_A_REL).isDir, true);
   });
 });
 
 
-describe('fss.directoryExists', () => {
-  const t = fss.directoryExists;
+describe('fss.dirExists', () => {
+  const t = fss.dirExists;
   it('Catch exceptions', () => {
     assert.throws(() => t(PATH_NOT_EXIST, true));
   });
   it('Mute exceptions', () => {
     assert.doesNotThrow(() => t(PATH_NOT_EXIST));
+  });
+  it('Catch exceptions in callback', () => {
+    let called = false;
+    assert.doesNotThrow(() => {
+      t(PATH_NOT_EXIST, (state, err) => {
+        called = true;
+        assert.equal(state, PATH_NOT_EXIST);
+        assert(err);
+      });
+    });
+    assert.equal(called, true);
   });
   it('True', () => {
     assert.equal(t(DIR_A_REL), true);
@@ -158,6 +171,17 @@ describe('fss.fileExists', () => {
   it('Mute exceptions', () => {
     assert.doesNotThrow(() => t(PATH_NOT_EXIST));
   });
+  it('Catch exceptions in callback', () => {
+    let called = false;
+    assert.doesNotThrow(() => {
+      t(PATH_NOT_EXIST, (state, err) => {
+        called = true;
+        assert.equal(state, PATH_NOT_EXIST);
+        assert(err);
+      });
+    });
+    assert.equal(called, true);
+  });
   it('True', () => {
     assert.equal(t(FILE_A_REL), true);
   });
@@ -173,6 +197,17 @@ describe('fss.pathExists', () => {
   });
   it('Mute exceptions', () => {
     assert.doesNotThrow(() => t(PATH_NOT_EXIST));
+  });
+  it('Catch exceptions in callback', () => {
+    let called = false;
+    assert.doesNotThrow(() => {
+      t(PATH_NOT_EXIST, (state, err) => {
+        called = true;
+        assert.equal(state, PATH_NOT_EXIST);
+        assert(err);
+      });
+    });
+    assert.equal(called, true);
   });
   it('True [Directory]', () => {
     assert.equal(t(DIR_A_REL), true);
@@ -192,6 +227,17 @@ describe('fss.readTextFile', () => {
   });
   it('Mute exceptions', () => {
     assert.doesNotThrow(() => t(PATH_NOT_EXIST));
+  });
+  it('Catch exceptions in callback', () => {
+    let called = false;
+    assert.doesNotThrow(() => {
+      t(PATH_NOT_EXIST, (state, err) => {
+        called = true;
+        assert.equal(state, PATH_NOT_EXIST);
+        assert(err);
+      });
+    });
+    assert.equal(called, true);
   });
   it('Read a file', () => {
     assert.equal(t(FILE_A_REL), 'sample text\n');
