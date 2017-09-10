@@ -1,6 +1,8 @@
 # fs-syncx
 
 [![Build Status](https://travis-ci.org/mgenware/fs-syncx.svg?branch=master)](http://travis-ci.org/mgenware/fs-syncx)
+[![npm version](https://badge.fury.io/js/fs-syncx.svg)](https://badge.fury.io/js/fs-syncx)
+[![Node.js Version](http://img.shields.io/node/v/fs-syncx.svg)](https://nodejs.org/en/)
 
 Useful sync methods for file system.
 
