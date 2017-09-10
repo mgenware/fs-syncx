@@ -25,20 +25,20 @@ describe('CallWrapper', () => {
   const STATE = 'state';
 
   it('Catch exceptions [No Exceptions]', () => {
-    assert.doesNotThrow(() => t(true, RET_EXP, FUN_NOEXP, STATE));
-    assert.equal(t(true, RET_EXP, FUN_NOEXP, STATE), RET_NOEXP);
+    assert.doesNotThrow(() => t(true, STATE, RET_EXP, FUN_NOEXP));
+    assert.equal(t(true, STATE, RET_EXP, FUN_NOEXP), RET_NOEXP);
   });
   it('Mute exceptions [No Exceptions]', () => {
-    assert.doesNotThrow(() => t(false, RET_EXP, FUN_NOEXP, STATE));
-    assert.equal(t(false, RET_EXP, FUN_NOEXP, STATE), RET_NOEXP);
+    assert.doesNotThrow(() => t(false, STATE, RET_EXP, FUN_NOEXP));
+    assert.equal(t(false, STATE, RET_EXP, FUN_NOEXP), RET_NOEXP);
   });
 
   it('Catch exceptions [Exceptions]', () => {
-    assert.throws(() => t(true, RET_EXP, FUNC_EXP, STATE));
+    assert.throws(() => t(true, STATE, RET_EXP, FUNC_EXP));
   });
   it('Mute exceptions [Exceptions]', () => {
-    assert.doesNotThrow(() => t(false, RET_EXP, FUNC_EXP, STATE));
-    assert.equal(t(false, RET_EXP, FUNC_EXP, STATE), RET_EXP);
+    assert.doesNotThrow(() => t(false, STATE, RET_EXP, FUNC_EXP));
+    assert.equal(t(false, STATE, RET_EXP, FUNC_EXP), RET_EXP);
   });
   it('Catch exceptions in callback', () => {
     const RET = 'testing_t';
@@ -49,7 +49,7 @@ describe('CallWrapper', () => {
     const COUNTER = 2;
 
     let counter = 0;
-    t((st, ex) => {
+    t((st, ex) => { // catchExp argument
       counter += 1;
       if (counter === 1) {
         assert.equal(st, STATE_1);
@@ -58,11 +58,14 @@ describe('CallWrapper', () => {
         assert.equal(st, STATE_2);
         assert.equal(ex.message, MSG_2);
       }
-    }, RET, (state, exCollector) => {
+    },
+    STATE_1,
+    RET,
+    (state, exCollector) => {
       // the state variable points to the root state (STATE_1)
       exCollector(state, new Error(MSG_1));
       exCollector(STATE_2, new Error(MSG_2));
-    }, STATE_1);
+    });
 
     assert.equal(counter, COUNTER);
   });
@@ -78,9 +81,12 @@ describe('CallWrapper', () => {
       counter += 1;
       assert.equal(st, STATE_1);
       assert.equal(ex.message, MSG_1);
-    }, RET, () => {
+    },
+    STATE_1,
+    RET,
+    () => {
       throw new Error(MSG_1);
-    }, STATE_1);
+    });
 
     assert.equal(counter, COUNTER);
   });
@@ -94,6 +100,15 @@ describe('fss.pathInfo', () => {
   });
   it('Mute exceptions', () => {
     assert.doesNotThrow(() => t(PATH_NOT_EXIST));
+  });
+  it('Catch exceptions in callback', () => {
+    let called = false;
+    t(PATH_NOT_EXIST, (state, err) => {
+      called = true;
+      assert.equal(state, PATH_NOT_EXIST);
+      assert(err);
+    });
+    assert.equal(called, true);
   });
 
   it('name [Relative path]', () => {
