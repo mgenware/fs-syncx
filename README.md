@@ -42,7 +42,7 @@ Possible values:
 
 Examples:
 ```javascript
-var fss = require('/Users/yuanyuanliu/Documents/g/fs-syncx');
+var fss = require('fs-syncx');
 const FILE = '/__file_does_not_exist__';
 
 // catchExp is false, no error is thrown, returns false if errors occur
