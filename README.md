@@ -14,7 +14,7 @@ npm install --save fs-syncx
 
 yarn:
 ```
-npm install add fs-syncx
+yarn add fs-syncx
 ```
 
 ## Run tests
