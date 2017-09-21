@@ -7,24 +7,19 @@
 Useful sync methods for file system.
 
 ## Installation
-npm:
-```
+```bash
+# npm
 npm install --save fs-syncx
-```
-
-yarn:
-```
+# yarn
 yarn add fs-syncx
 ```
 
 ## Run tests
 npm:
-```
+```bash
+# npm
 npm test
-```
-
-yarn:
-```
+# yarn
 yarn test
 ```
 
@@ -85,13 +80,13 @@ fss.listFiles({ path: 'some directory', recursive: true }, , (state, err) => {
 ```
 
 ## APIs
-### `pathInfo` 
-Returns information about a given path.
+### `pathInfo`
+Returns an `PathInfo` object containing information about a given path.
 ```javascript
-pathInfo(path, catchExp)
+pathInfo(path, catchExp): PathInfo
 ```
 
-Return value:
+`PathInfo` object:
 ```javascript
 {
     name: 'abc', // the name of the path
@@ -103,27 +98,27 @@ Return value:
 }
 ```
 
-### fileExists
+### `fileExists`
 Returns true if the given path is a file.
 ```javascript
-fileExists(path, catchExp)
+fileExists(path, catchExp): bool
 ```
 
-### dirExists
+### `dirExists`
 Returns true if the given path is a directory.
 ```javascript
-dirExists(path, catchExp)
+dirExists(path, catchExp): bool
 ```
 
-### listDirs, listFiles, listPaths
-* `listDirs` returns sub-directories in a directory.
-* `listFiles` returns sub-files in a directory.
-* `listPaths` returns all sub-paths in a directory.
+### `listDirs`, `listFiles`, `listPaths`
+* `listDirs` returns an array of `PathInfo` representing sub-directories in a directory.
+* `listFiles` returns an array of `PathInfo` representing sub-files in a directory.
+* `listPaths` returns an array of `PathInfo` representing all sub-paths in a directory.
 
 ```javascript
-listDirs(path|opt, catchExp)
-listFiles(path|opt, catchExp)
-listPaths(path|opt, catchExp)
+listDirs(path|opt, catchExp): [PathInfo]
+listFiles(path|opt, catchExp): [PathInfo]
+listPaths(path|opt, catchExp): [PathInfo]
 ```
 
 * `path` path string.
@@ -132,10 +127,10 @@ listPaths(path|opt, catchExp)
     * `recursive` list children recursively, default `false`.
 
 
-### readTextFile
+### `readTextFile`
 Reads the contents of a file in UTF8 encoding.
 ```javascript
-readTextFile(path, catchExp)
+readTextFile(path, catchExp): string
 ```
 
 
