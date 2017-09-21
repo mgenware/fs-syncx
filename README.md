@@ -126,6 +126,20 @@ listPaths(path|opt, catchExp): [PathInfo]
     * `path` path string.
     * `recursive` list children recursively, default `false`.
 
+**Note that these functions return an array of `PathInfo` objects**, you can use JavaScript `map` function to convert them to an array of strings.
+```javascript
+const fss = require('fs-syncx');
+const DIR = 'node_modules';
+
+// PathInfo.name: relative path
+fss.listDirs(DIR).map(d => d.name);
+// [ 'fs-syncx', 'is-string' ]
+
+// PathInfo.fullPath: absolute path
+fss.listDirs(DIR).map(d => d.fullPath);
+/* [ '/Users/me/proj/node_modules/fs-syncx',
+     '/Users/me/proj/node_modules/is-string' ] */
+```
 
 ### `readTextFile`
 Reads the contents of a file in UTF8 encoding.
