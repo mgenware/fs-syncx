@@ -271,8 +271,14 @@ describe('fss.listDirs', () => {
   it('List dirs [Absolute Path]', () => {
     assertPathsEqual(t(DIR_A_ABS), ['dir1', 'dir2']);
   });
+  it('List dirs [Absolute Path] [Glob]', () => {
+    assertPathsEqual(t({ path: DIR_A_ABS, glob: '*2' }), ['dir2']);
+  });
   it('List dirs [Recursive] [Absolute Path]', () => {
     assertPathsEqual(t({ path: DIR_A_ABS, recursive: true }), ['dir1', 'dir2', 'dir3']);
+  });
+  it('List dirs [Recursive] [Absolute Path] [Glob]', () => {
+    assertPathsEqual(t({ path: DIR_A_ABS, recursive: true, glob: '*2' }), ['dir2']);
   });
 });
 
@@ -284,7 +290,13 @@ describe('fss.listFiles', () => {
   it('List files [Absolute Path]', () => {
     assertPathsEqual(t(DIR_A_ABS), ['json.json', 'text.txt']);
   });
+  it('List files [Absolute Path] [Glob]', () => {
+    assertPathsEqual(t({ path: DIR_A_ABS, glob: '*.json' }), ['json.json']);
+  });
   it('List files [Recursive] [Absolute Path]', () => {
     assertPathsEqual(t({ path: DIR_A_ABS, recursive: true }), ['json.json', 'text.txt', 'text.txt', 'text.txt', 'text.txt']);
+  });
+  it('List files [Recursive] [Absolute Path] [Glob]', () => {
+    assertPathsEqual(t({ path: DIR_A_ABS, recursive: true, glob: '*.txt' }), ['text.txt', 'text.txt', 'text.txt', 'text.txt']);
   });
 });
