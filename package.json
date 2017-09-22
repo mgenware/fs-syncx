@@ -1,6 +1,6 @@
 {
   "name": "fs-syncx",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Useful sync methods for file system",
   "main": "lib/main.js",
   "author": "Mgen (https://www.mgenware.com)",
@@ -16,10 +16,19 @@
   },
   "license": "MIT",
   "devDependencies": {
-    "mocha": "*"
+    "@types/mocha": "^2.2.43",
+    "@types/node": "^8.0.29",
+    "copyfiles": "^1.2.0",
+    "mocha": "*",
+    "ts-node": "^3.3.0",
+    "typescript": "^2.5.2"
   },
   "scripts": {
-    "test": "mocha --reporter spec"
+    "test": "yarn run compile && yarn run copy && mocha \"dist/test/*.js\"",
+    "build": "tsc && yarn test",
+    "compile": "tsc",
+    "dev": "tsc -w",
+    "copy": "copyfiles \"test/data/**/*.*\" \"dist\""
   },
   "engines": {
     "node": ">=4.0.0"
