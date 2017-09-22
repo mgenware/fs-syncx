@@ -1,8 +1,6 @@
-'use strict';
-
-const assert = require('assert');
-const nodepath = require('path');
-const fss = require('../lib/main');
+import assert from 'assert';
+import * as nodepath from 'path';
+import fss from '../lib/main';
 
 const PATH_NOT_EXIST = 'PATH_NOT_EXIST.__ABC__';
 const FILE_A_REL = 'test/data/text.txt';
@@ -49,7 +47,7 @@ describe('CallWrapper', () => {
     const COUNTER = 2;
 
     let counter = 0;
-    t((st, ex) => { // catchExp argument
+    t((st: any, ex: Error) => { // catchExp argument
       counter += 1;
       if (counter === 1) {
         assert.equal(st, STATE_1);
@@ -61,10 +59,11 @@ describe('CallWrapper', () => {
     },
     STATE_1,
     RET,
-    (state, exCollector) => {
+    (state: any, exCollector: any) => {
       // the state variable points to the root state (STATE_1)
       exCollector(state, new Error(MSG_1));
       exCollector(STATE_2, new Error(MSG_2));
+      return RET;
     });
 
     assert.equal(counter, COUNTER);
@@ -77,7 +76,7 @@ describe('CallWrapper', () => {
     const COUNTER = 1;
 
     let counter = 0;
-    t((st, ex) => {
+    t((st: any, ex: Error) => {
       counter += 1;
       assert.equal(st, STATE_1);
       assert.equal(ex.message, MSG_1);
@@ -104,7 +103,7 @@ describe('fss.pathInfo', () => {
   it('Catch exceptions in callback', () => {
     let called = false;
     assert.doesNotThrow(() => {
-      t(PATH_NOT_EXIST, (state, err) => {
+      t(PATH_NOT_EXIST, (state: any, err: Error) => {
         called = true;
         assert.equal(state, PATH_NOT_EXIST);
         assert(err);
@@ -147,7 +146,7 @@ describe('fss.dirExists', () => {
   it('Catch exceptions in callback', () => {
     let called = false;
     assert.doesNotThrow(() => {
-      t(PATH_NOT_EXIST, (state, err) => {
+      t(PATH_NOT_EXIST, (state: any, err: Error) => {
         called = true;
         assert.equal(state, PATH_NOT_EXIST);
         assert(err);
@@ -174,7 +173,7 @@ describe('fss.fileExists', () => {
   it('Catch exceptions in callback', () => {
     let called = false;
     assert.doesNotThrow(() => {
-      t(PATH_NOT_EXIST, (state, err) => {
+      t(PATH_NOT_EXIST, (state: any, err: Error) => {
         called = true;
         assert.equal(state, PATH_NOT_EXIST);
         assert(err);
@@ -201,7 +200,7 @@ describe('fss.pathExists', () => {
   it('Catch exceptions in callback', () => {
     let called = false;
     assert.doesNotThrow(() => {
-      t(PATH_NOT_EXIST, (state, err) => {
+      t(PATH_NOT_EXIST, (state: any, err: Error) => {
         called = true;
         assert.equal(state, PATH_NOT_EXIST);
         assert(err);
@@ -231,7 +230,7 @@ describe('fss.readTextFile', () => {
   it('Catch exceptions in callback', () => {
     let called = false;
     assert.doesNotThrow(() => {
-      t(PATH_NOT_EXIST, (state, err) => {
+      t(PATH_NOT_EXIST, (state: any, err: Error) => {
         called = true;
         assert.equal(state, PATH_NOT_EXIST);
         assert(err);
