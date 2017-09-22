@@ -252,8 +252,14 @@ describe('fss.listPaths', () => {
   it('List paths [Absolute Path]', () => {
     assertPathsEqual(t(DIR_A_ABS), ['json.json', 'text.txt', 'dir1', 'dir2']);
   });
+  it('List paths [Absolute Path] [Glob]', () => {
+    assertPathsEqual(t({ path: DIR_A_ABS, glob: 'dir*' }), ['dir1', 'dir2']);
+  });
   it('List paths [Recursive] [Absolute Path]', () => {
     assertPathsEqual(t({ path: DIR_A_ABS, recursive: true }), ['json.json', 'text.txt', 'dir1', 'dir2', 'dir3', 'text.txt', 'text.txt', 'text.txt']);
+  });
+  it('List paths [Recursive] [Absolute Path] [Glob]', () => {
+    assertPathsEqual(t({ path: DIR_A_ABS, recursive: true, glob: '*.txt' }), ['text.txt', 'text.txt', 'text.txt', 'text.txt']);
   });
 });
 

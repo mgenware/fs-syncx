@@ -25,6 +25,7 @@
     "node": ">=4.0.0"
   },
   "dependencies": {
-    "is-string": "^1.0.4"
+    "is-string": "^1.0.4",
+    "micromatch": "^3.1.0"
   }
 }
