@@ -1,6 +1,7 @@
-import assert from 'assert';
+import * as assert from 'assert';
 import * as nodepath from 'path';
 import fss from '../lib/main';
+import PathInfo from '../lib/pathInfo';
 
 const PATH_NOT_EXIST = 'PATH_NOT_EXIST.__ABC__';
 const FILE_A_REL = 'test/data/text.txt';
@@ -9,7 +10,7 @@ const FILE_A_NAME = 'text.txt';
 const DIR_A_REL = 'test/data/';
 const DIR_A_ABS = nodepath.join(__dirname, 'data');
 
-function assertPathsEqual(objs, strs) {
+function assertPathsEqual(objs: PathInfo[], strs: string[]) {
   assert.deepEqual(objs.map(i => i.name).sort(), strs.sort());
 }
 

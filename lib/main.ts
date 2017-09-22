@@ -165,5 +165,3 @@ export default class FSSyncx {
     return micromatch.isMatch(s, glob);
   }
 }
-
-module.exports = FSSyncx;
