@@ -101,8 +101,8 @@ export default class FSSyncx {
               predicate,
               isRecursive,
               isRecursive ? pathList : null,
-              null,
-              0);
+              glob,
+              globTarget);
           }
         }
       });
