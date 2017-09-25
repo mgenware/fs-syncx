@@ -246,6 +246,12 @@ describe('fss.readTextFile', () => {
 
 describe('fss.listPaths', () => {
   const t = fss.listPaths;
+  it('Return empty array [Exception]', () => {
+    assert.deepEqual(t(PATH_NOT_EXIST), []);
+  });
+  it('Return empty array [Glob]', () => {
+    assert.deepEqual(t({ path: DIR_A_ABS, glob: '*.NO_MATCH' }), []);
+  });
   it('List paths [Relative Path]', () => {
     assertPathsEqual(t(DIR_A_REL), ['json.json', 'text.txt', 'dir1', 'dir2']);
   });

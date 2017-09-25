@@ -67,7 +67,7 @@ export default class FSSyncx {
     glob: string,
     globTarget: GlobTarget): PathInfo[] {
     const pathList = list || [];
-    return FSSyncx.callWrapper(catchExp, path, null, () => {
+    return FSSyncx.callWrapper(catchExp, path, [], () => {
       const paths = fs.readdirSync(path) as string[];
       if (!paths) return pathList;
 
