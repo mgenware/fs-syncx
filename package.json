@@ -1,6 +1,6 @@
 {
   "name": "fs-syncx",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Useful sync methods for file system",
   "main": "dist/main.js",
   "author": "Mgen (https://www.mgenware.com)",
