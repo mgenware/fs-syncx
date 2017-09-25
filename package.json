@@ -30,7 +30,7 @@
     "copy": "copyfiles \"test/data/**/*.*\" \"dist\""
   },
   "engines": {
-    "node": ">=4.0.0"
+    "node": ">=6.0.0"
   },
   "dependencies": {
     "is-string": "^1.0.4",
