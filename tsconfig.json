@@ -7,7 +7,9 @@
         "sourceMap": true,
         "baseUrl": "lib",
         "target": "ES5",
-        "outDir": "dist"
+        "outDir": "dist",
+        "declaration": true,
+        "strict": true
     },
     "include": [
         "lib/**/*",
