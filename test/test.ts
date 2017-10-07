@@ -1,6 +1,6 @@
 import * as assert from 'assert';
 import * as nodepath from 'path';
-import fss from '../lib/main';
+import fss = require('../lib/main');
 import PathInfo from '../lib/pathInfo';
 
 const PATH_NOT_EXIST = 'PATH_NOT_EXIST.__ABC__';
@@ -114,24 +114,24 @@ describe('fss.pathInfo', () => {
   });
 
   it('name [Relative path]', () => {
-    assert.equal(t(FILE_A_REL).name, FILE_A_NAME);
+    assert.equal(t(FILE_A_REL)!.name, FILE_A_NAME);
   });
   it('name [Absolute path]', () => {
-    assert.equal(t(FILE_A_ABS).name, FILE_A_NAME);
+    assert.equal(t(FILE_A_ABS)!.name, FILE_A_NAME);
   });
 
   it('fullPath [Relative path]', () => {
-    assert.equal(t(FILE_A_REL).fullPath, FILE_A_ABS);
+    assert.equal(t(FILE_A_REL)!.fullPath, FILE_A_ABS);
   });
   it('fullPath [Absolute path]', () => {
-    assert.equal(t(FILE_A_ABS).fullPath, FILE_A_ABS);
+    assert.equal(t(FILE_A_ABS)!.fullPath, FILE_A_ABS);
   });
 
   it('isFile', () => {
-    assert.equal(t(FILE_A_REL).isFile, true);
+    assert.equal(t(FILE_A_REL)!.isFile, true);
   });
   it('isDir', () => {
-    assert.equal(t(DIR_A_REL).isDir, true);
+    assert.equal(t(DIR_A_REL)!.isDir, true);
   });
 });
 
