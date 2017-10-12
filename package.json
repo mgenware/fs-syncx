@@ -1,8 +1,9 @@
 {
   "name": "fs-syncx",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "Useful sync methods for file system",
   "main": "dist/lib/main.js",
+  "types": "dist/lib/main.d.ts",
   "author": "Mgen (https://www.mgenware.com)",
   "homepage": "https://github.com/mgenware/fs-syncx",
   "bugs": "https://github.com/mgenware/fs-syncx/issues",
@@ -27,6 +28,7 @@
     "build": "tsc && yarn test",
     "compile": "tsc",
     "dev": "tsc -w",
+    "prepublishOnly": "yarn run test",
     "copy": "copyfiles \"test/data/**/*.*\" \"dist\""
   },
   "engines": {
