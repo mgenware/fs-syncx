@@ -14,8 +14,17 @@ npm install --save fs-syncx
 yarn add fs-syncx
 ```
 
+JavaScript:
+```javascript
+const fss = require('fs-syncx');
+```
+
+TypeScript:
+```typescript
+import fss from 'fs-syncx';
+```
+
 ## Run tests
-npm:
 ```bash
 # npm
 npm test
@@ -37,7 +46,7 @@ Possible values:
 
 Examples:
 ```javascript
-var fss = require('fs-syncx');
+const fss = require('fs-syncx');
 const FILE = '/__file_does_not_exist__';
 
 // catchExp is false, no error is thrown, returns false if errors occur
