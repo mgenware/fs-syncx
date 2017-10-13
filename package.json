@@ -28,6 +28,7 @@
     "build": "tsc && yarn test",
     "compile": "tsc",
     "dev": "tsc -w",
+    "lint": "tslint --project .",
     "prepublishOnly": "yarn run test",
     "copy": "copyfiles \"test/data/**/*.*\" \"dist\""
   },
