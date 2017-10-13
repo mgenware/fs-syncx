@@ -11,7 +11,7 @@ const DIR_A_REL = 'test/data/';
 const DIR_A_ABS = nodepath.resolve(DIR_A_REL);
 
 function assertPathsEqual(objs: PathInfo[], strs: string[]) {
-  assert.deepEqual(objs.map(i => i.name).sort(), strs.sort());
+  assert.deepEqual(objs.map((i) => i.name).sort(), strs.sort());
 }
 
 describe('CallWrapper', () => {
@@ -134,7 +134,6 @@ describe('fss.pathInfo', () => {
     assert.equal(t(DIR_A_REL)!.isDir, true);
   });
 });
-
 
 describe('fss.dirExists', () => {
   const t = fss.dirExists;
@@ -262,10 +261,14 @@ describe('fss.listPaths', () => {
     assertPathsEqual(t({ path: DIR_A_ABS, glob: 'dir*' }), ['dir1', 'dir2']);
   });
   it('List paths [Recursive] [Absolute Path]', () => {
-    assertPathsEqual(t({ path: DIR_A_ABS, recursive: true }), ['json.json', 'text.txt', 'dir1', 'dir2', 'dir3', 'text.txt', 'text.txt', 'text.txt']);
+    assertPathsEqual(t({
+      path: DIR_A_ABS, recursive: true }),
+      ['json.json', 'text.txt', 'dir1', 'dir2', 'dir3', 'text.txt', 'text.txt', 'text.txt']);
   });
   it('List paths [Recursive] [Absolute Path] [Glob]', () => {
-    assertPathsEqual(t({ path: DIR_A_ABS, recursive: true, glob: '*.txt' }), ['text.txt', 'text.txt', 'text.txt', 'text.txt']);
+    assertPathsEqual(t({
+      path: DIR_A_ABS, recursive: true, glob: '*.txt' }),
+      ['text.txt', 'text.txt', 'text.txt', 'text.txt']);
   });
 });
 
@@ -300,9 +303,13 @@ describe('fss.listFiles', () => {
     assertPathsEqual(t({ path: DIR_A_ABS, glob: '*.json' }), ['json.json']);
   });
   it('List files [Recursive] [Absolute Path]', () => {
-    assertPathsEqual(t({ path: DIR_A_ABS, recursive: true }), ['json.json', 'text.txt', 'text.txt', 'text.txt', 'text.txt']);
+    assertPathsEqual(t({
+      path: DIR_A_ABS, recursive: true }),
+      ['json.json', 'text.txt', 'text.txt', 'text.txt', 'text.txt']);
   });
   it('List files [Recursive] [Absolute Path] [Glob]', () => {
-    assertPathsEqual(t({ path: DIR_A_ABS, recursive: true, glob: '*.txt' }), ['text.txt', 'text.txt', 'text.txt', 'text.txt']);
+    assertPathsEqual(t({
+      path: DIR_A_ABS, recursive: true, glob: '*.txt' }),
+      ['text.txt', 'text.txt', 'text.txt', 'text.txt']);
   });
 });

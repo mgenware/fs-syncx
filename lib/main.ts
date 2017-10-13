@@ -7,10 +7,11 @@ import PathInfo from './pathInfo';
 enum GlobTarget {
   All = 1,
   Dirs,
-  Files
+  Files,
 }
 
-export function callWrapper<T>(catchExp: any, 
+export function callWrapper<T>(
+  catchExp: any,
   state: any,
   exceptionValue: T,
   func: (state: any, catchExp: ((state: any, error: Error) => void) | null) => T): T {
@@ -68,7 +69,9 @@ function listPathsCore(
   const pathList = list || [];
   return callWrapper(catchExp, path, [], () => {
     const paths = fs.readdirSync(path) as string[];
-    if (!paths) return pathList;
+    if (!paths) {
+      return pathList;
+    }
 
     paths.forEach((value) => {
       const info = pathInfo(nodepath.join(path, value), catchExp);

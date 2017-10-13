@@ -5,4 +5,4 @@ describe('require this module', () => {
   it('No exception thrown', () => {
     assert.equal(typeof fss.listDirs, 'function');
   });
-});  
+});
