@@ -79,7 +79,7 @@ fss.listFiles({ path: 'some directory', recursive: true }, true);
 /* Some directory is not accessible... */
 
 // if catchExp is a callback, all errors will be reported and the function won't stop executing
-fss.listFiles({ path: 'some directory', recursive: true }, , (state, err) => {
+fss.listFiles({ path: 'some directory', recursive: true }, (state, err) => {
     console.log(`state: ${state}, error: ${err}`);
 });
 // state: some directory, error: not accessible
