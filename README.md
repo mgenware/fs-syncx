@@ -85,7 +85,7 @@ fss.listFiles({ path: 'some directory', recursive: true }, , (state, err) => {
 // state: some directory, error: not accessible
 // state: some directory, error: not accessible
 // state: some directory, error: system error
-// returns null if there are any errors
+// returns an array of FileInfos
 ```
 
 ## APIs
