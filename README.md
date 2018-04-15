@@ -5,7 +5,7 @@
 [![npm version](https://badge.fury.io/js/fs-syncx.svg)](https://badge.fury.io/js/fs-syncx)
 [![Node.js Version](http://img.shields.io/node/v/fs-syncx.svg)](https://nodejs.org/en/)
 
-> ** It is recommended to use the async version of this package: [m-fs](https://github.com/mgenware/m-fs). Use this package only when you can't use async functions **
+> **It is recommended to use the async version of this package: [m-fs](https://github.com/mgenware/m-fs). Use this package only when you can't use async functions**
 
 Useful sync methods for file system.
 
