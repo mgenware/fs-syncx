@@ -124,13 +124,21 @@ dirExists(path, catchExp): bool
 
 ### `listDirs`, `listFiles`, `listPaths`
 * `listDirs` returns an array of `PathInfo` representing sub-directories in a directory.
+* `listStringDirs` like `listDirs`, returns an array of `string` instead.
 * `listFiles` returns an array of `PathInfo` representing sub-files in a directory.
+* `listStringFiles` like `listFiles`, returns an array of `string` instead.
 * `listPaths` returns an array of `PathInfo` representing all sub-paths in a directory.
+* `listStringPaths` like `listPaths`, returns an array of `string` instead.
 
 ```javascript
 listDirs(path|opt, catchExp): [PathInfo]
+listStringDirs(path|opt, catchExp): [string]
+
 listFiles(path|opt, catchExp): [PathInfo]
+listStringFiles(path|opt, catchExp): [string]
+
 listPaths(path|opt, catchExp): [PathInfo]
+listStringPaths(path|opt, catchExp): [string]
 ```
 
 * `path` path string.
@@ -158,7 +166,6 @@ Reads the contents of a file in UTF8 encoding.
 ```javascript
 readTextFile(path, catchExp): string
 ```
-
 
 
 # License
