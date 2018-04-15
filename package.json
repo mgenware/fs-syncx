@@ -1,6 +1,6 @@
 {
   "name": "fs-syncx",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Useful sync methods for file system",
   "main": "dist/lib/main.js",
   "types": "dist/lib/main.d.ts",
