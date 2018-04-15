@@ -6,6 +6,8 @@
 
 Useful sync methods for file system.
 
+> For a async version of this package, see [m-fs](https://github.com/mgenware/m-fs).
+
 ## Installation
 ```bash
 # npm
