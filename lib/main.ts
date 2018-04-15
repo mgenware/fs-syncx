@@ -3,6 +3,7 @@ import * as nodepath from 'path';
 const isString = require('is-string') as any;
 const micromatch = require('micromatch') as any;
 import PathInfo from './pathInfo';
+import * as mkdirp from 'mkdirp';
 
 enum GlobTarget {
   All = 1,
@@ -181,4 +182,14 @@ function convertPathToOpt(path: any) {
 
 function isGlobMatch(s: string, glob: string) {
   return micromatch.isMatch(s, glob);
+}
+
+export function writeFileSync(
+  path: string,
+  data: any,
+  options?: { encoding?: string | null; mode?: number | string; flag?: string; } | string | null): void {
+  if (path) {
+    mkdirp.sync(path);
+  }
+  fs.writeFileSync(path, data, options);
 }
