@@ -5,9 +5,9 @@
 [![npm version](https://badge.fury.io/js/fs-syncx.svg)](https://badge.fury.io/js/fs-syncx)
 [![Node.js Version](http://img.shields.io/node/v/fs-syncx.svg)](https://nodejs.org/en/)
 
-Useful sync methods for file system.
+> ** It is recommended to use the async version of this package: [m-fs](https://github.com/mgenware/m-fs). Use this package only when you can't use async functions **
 
-> For a async version of this package, see [m-fs](https://github.com/mgenware/m-fs).
+Useful sync methods for file system.
 
 ## Installation
 ```bash
@@ -162,11 +162,13 @@ fss.listDirs(DIR).map(d => d.fullPath);
 ```
 
 ### `readTextFile`
-Reads the contents of a file in UTF8 encoding.
+Reads the contents of a file in UTF8 encoding. Like `fs.readFile`, but encoding defaults to `utf8`.
 ```javascript
 readTextFile(path, catchExp): string
 ```
 
+### `writeFileSync`
+Like `fs.writeFileSync`, but calls `mkdir -p` before writing the file.
 
 # License
 MIT
