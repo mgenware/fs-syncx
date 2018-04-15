@@ -191,7 +191,7 @@ export function writeFileSync(
   if (path) {
     const baseDir = nodepath.dirname(path);
     if (baseDir) {
-      mkdirp.sync(path);
+      mkdirp.sync(baseDir);
     }
   }
   fs.writeFileSync(path, data, options);
