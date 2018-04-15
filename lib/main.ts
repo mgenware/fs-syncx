@@ -189,7 +189,10 @@ export function writeFileSync(
   data: any,
   options?: { encoding?: string | null; mode?: number | string; flag?: string; } | string | null): void {
   if (path) {
-    mkdirp.sync(path);
+    const baseDir = nodepath.dirname(path);
+    if (baseDir) {
+      mkdirp.sync(path);
+    }
   }
   fs.writeFileSync(path, data, options);
 }
