@@ -1,6 +1,6 @@
 {
   "name": "fs-syncx",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Useful sync methods for file system",
   "main": "dist/lib/main.js",
   "types": "dist/lib/main.d.ts",
@@ -20,6 +20,7 @@
     "@types/mocha": "^2.2.43",
     "@types/node": "^8.0.29",
     "copyfiles": "^1.2.0",
+    "jest": "^22.4.3",
     "mocha": "^5.1.0",
     "rimraf": "^2.6.2",
     "tslint": "^5.9.1",
