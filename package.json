@@ -17,6 +17,7 @@
   },
   "license": "MIT",
   "devDependencies": {
+    "@types/mkdirp": "^0.5.2",
     "@types/mocha": "^2.2.43",
     "@types/node": "^8.0.29",
     "copyfiles": "^1.2.0",
@@ -45,7 +46,8 @@
   },
   "dependencies": {
     "is-string": "^1.0.4",
-    "micromatch": "^3.1.0"
+    "micromatch": "^3.1.0",
+    "mkdirp": "^0.5.1"
   },
   "files": [
     "dist/lib",

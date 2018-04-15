@@ -14,6 +14,10 @@ function assertPathsEqual(objs: PathInfo[], strs: string[]) {
   assert.deepEqual(objs.map((i) => i.name).sort(), strs.sort());
 }
 
+function assertStringPathsEqual(got: string[], expected: string[]) {
+  assert.deepEqual(got.sort(), expected.sort());
+}
+
 describe('CallWrapper', () => {
   const t = fss.callWrapper;
   const RET_EXP = 'exception';
@@ -309,6 +313,77 @@ describe('fss.listFiles', () => {
   });
   it('List files [Recursive] [Absolute Path] [Glob]', () => {
     assertPathsEqual(t({
+      path: DIR_A_ABS, recursive: true, glob: '*.txt' }),
+      ['text.txt', 'text.txt', 'text.txt', 'text.txt']);
+  });
+});
+
+describe('fss.listStringPaths', () => {
+  const t = fss.listStringPaths;
+  it('Return empty array [Exception]', () => {
+    assert.deepEqual(t(PATH_NOT_EXIST), []);
+  });
+  it('Return empty array [Glob]', () => {
+    assert.deepEqual(t({ path: DIR_A_ABS, glob: '*.NO_MATCH' }), []);
+  });
+  it('List paths [Relative Path]', () => {
+    assertStringPathsEqual(t(DIR_A_REL), ['json.json', 'text.txt', 'dir1', 'dir2']);
+  });
+  it('List paths [Absolute Path]', () => {
+    assertStringPathsEqual(t(DIR_A_ABS), ['json.json', 'text.txt', 'dir1', 'dir2']);
+  });
+  it('List paths [Absolute Path] [Glob]', () => {
+    assertStringPathsEqual(t({ path: DIR_A_ABS, glob: 'dir*' }), ['dir1', 'dir2']);
+  });
+  it('List paths [Recursive] [Absolute Path]', () => {
+    assertStringPathsEqual(t({
+      path: DIR_A_ABS, recursive: true }),
+      ['json.json', 'text.txt', 'dir1', 'dir2', 'dir3', 'text.txt', 'text.txt', 'text.txt']);
+  });
+  it('List paths [Recursive] [Absolute Path] [Glob]', () => {
+    assertStringPathsEqual(t({
+      path: DIR_A_ABS, recursive: true, glob: '*.txt' }),
+      ['text.txt', 'text.txt', 'text.txt', 'text.txt']);
+  });
+});
+
+describe('fss.listStringDirs', () => {
+  const t = fss.listStringDirs;
+  it('List dirs [Relative Path]', () => {
+    assertStringPathsEqual(t(DIR_A_REL), ['dir1', 'dir2']);
+  });
+  it('List dirs [Absolute Path]', () => {
+    assertStringPathsEqual(t(DIR_A_ABS), ['dir1', 'dir2']);
+  });
+  it('List dirs [Absolute Path] [Glob]', () => {
+    assertStringPathsEqual(t({ path: DIR_A_ABS, glob: '*2' }), ['dir2']);
+  });
+  it('List dirs [Recursive] [Absolute Path]', () => {
+    assertStringPathsEqual(t({ path: DIR_A_ABS, recursive: true }), ['dir1', 'dir2', 'dir3']);
+  });
+  it('List dirs [Recursive] [Absolute Path] [Glob]', () => {
+    assertStringPathsEqual(t({ path: DIR_A_ABS, recursive: true, glob: '*2' }), ['dir2']);
+  });
+});
+
+describe('fss.listStringFiles', () => {
+  const t = fss.listStringFiles;
+  it('List files [Relative Path]', () => {
+    assertStringPathsEqual(t(DIR_A_REL), ['json.json', 'text.txt']);
+  });
+  it('List files [Absolute Path]', () => {
+    assertStringPathsEqual(t(DIR_A_ABS), ['json.json', 'text.txt']);
+  });
+  it('List files [Absolute Path] [Glob]', () => {
+    assertStringPathsEqual(t({ path: DIR_A_ABS, glob: '*.json' }), ['json.json']);
+  });
+  it('List files [Recursive] [Absolute Path]', () => {
+    assertStringPathsEqual(t({
+      path: DIR_A_ABS, recursive: true }),
+      ['json.json', 'text.txt', 'text.txt', 'text.txt', 'text.txt']);
+  });
+  it('List files [Recursive] [Absolute Path] [Glob]', () => {
+    assertStringPathsEqual(t({
       path: DIR_A_ABS, recursive: true, glob: '*.txt' }),
       ['text.txt', 'text.txt', 'text.txt', 'text.txt']);
   });

@@ -112,6 +112,10 @@ function listPathsCore(
   });
 }
 
+function pathInfosToStrings(src: PathInfo[]): string[] {
+  return src.map((info) => info.name);
+}
+
 export function listPaths(path: any, catchExp: any = null): PathInfo[] {
   const opt = convertPathToOpt(path);
 
@@ -122,6 +126,10 @@ export function listPaths(path: any, catchExp: any = null): PathInfo[] {
     [],
     opt.glob,
     GlobTarget.All);
+}
+
+export function listStringPaths(path: any, catchExp: any = null): string[] {
+  return pathInfosToStrings(listPaths(path, catchExp));
 }
 
 export function listDirs(path: any, catchExp: any = null): PathInfo[] {
@@ -136,6 +144,10 @@ export function listDirs(path: any, catchExp: any = null): PathInfo[] {
     GlobTarget.Dirs);
 }
 
+export function listStringDirs(path: any, catchExp: any = null): string[] {
+  return pathInfosToStrings(listDirs(path, catchExp));
+}
+
 export function listFiles(path: any, catchExp: any = null): PathInfo[] {
   const opt = convertPathToOpt(path);
   const predicate = (i: PathInfo) => i.isFile && (!opt.filter || opt.filter(i));
@@ -146,6 +158,10 @@ export function listFiles(path: any, catchExp: any = null): PathInfo[] {
     [],
     opt.glob,
     GlobTarget.Files);
+}
+
+export function listStringFiles(path: any, catchExp: any = null): string[] {
+  return pathInfosToStrings(listFiles(path, catchExp));
 }
 
 /* internal functions */
